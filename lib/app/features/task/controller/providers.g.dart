@@ -20,22 +20,6 @@ final taskListProvider = FutureProvider<List<TaskModel>>.internal(
 );
 
 typedef TaskListRef = FutureProviderRef<List<TaskModel>>;
-String _$userResponseListHash() => r'4bb7063a5511cb2c0c709836573ff35cbdce2d21';
-
-/// See also [userResponseList].
-@ProviderFor(userResponseList)
-final userResponseListProvider =
-    FutureProvider<List<UserResponseModel>>.internal(
-  userResponseList,
-  name: r'userResponseListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userResponseListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef UserResponseListRef = FutureProviderRef<List<UserResponseModel>>;
 String _$taskSelectedHash() => r'ceb7803b36dfc57a0dedf1947b3e490e2937f5a9';
 
 /// See also [TaskSelected].

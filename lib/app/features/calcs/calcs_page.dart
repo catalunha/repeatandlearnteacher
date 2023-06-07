@@ -5,8 +5,8 @@ import '../task/controller/providers.dart';
 import 'comp/calc_card.dart';
 import 'controller/providers.dart';
 
-class CalcStartPage extends ConsumerWidget {
-  const CalcStartPage({
+class CalcsPage extends ConsumerWidget {
+  const CalcsPage({
     super.key,
   });
 

@@ -4,11 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import 'core/authentication/riverpod/auth_prov.dart';
 import 'core/authentication/riverpod/auth_state.dart';
-import 'features/calc/calc_start_page.dart';
+import 'features/calcs/calcs_page.dart';
 import 'features/error/error_page.dart';
 import 'features/home/home_page.dart';
+import 'features/level/levels_page.dart';
 import 'features/splash/splash_page.dart';
-import 'features/task/task_page.dart';
+import 'features/task/tasks_page.dart';
 import 'features/user/login/user_login_page.dart';
 import 'features/user/register/email/user_register_email.page.dart';
 import 'features/user_profile/edit/user_profile_edit_page.dart';
@@ -86,45 +87,34 @@ final goRouterProv = Provider<GoRouter>(
               },
             ),
             GoRoute(
-              path: AppPage.tasks.path,
-              name: AppPage.tasks.name,
-              builder: (context, state) {
-                return TaskPage(
-                  key: state.pageKey,
-                );
-              },
-              routes: [
-                GoRoute(
-                  path: AppPage.calcStart.path,
-                  name: AppPage.calcStart.name,
-                  builder: (context, state) {
-                    return CalcStartPage(
-                      key: state.pageKey,
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: AppPage.calcs.path,
-                      name: AppPage.calcs.name,
+                path: AppPage.levels.path,
+                name: AppPage.levels.name,
+                builder: (context, state) {
+                  return LevelsPage(
+                    key: state.pageKey,
+                  );
+                },
+                routes: [
+                  GoRoute(
+                      path: AppPage.tasks.path,
+                      name: AppPage.tasks.name,
                       builder: (context, state) {
-                        return CalcsPage(
+                        return TasksPage(
                           key: state.pageKey,
                         );
                       },
-                    ),
-                    GoRoute(
-                      path: AppPage.calcReport.path,
-                      name: AppPage.calcReport.name,
-                      builder: (context, state) {
-                        return CalcReportPage(
-                          key: state.pageKey,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            )
+                      routes: [
+                        GoRoute(
+                          path: AppPage.calcs.path,
+                          name: AppPage.calcs.name,
+                          builder: (context, state) {
+                            return CalcsPage(
+                              key: state.pageKey,
+                            );
+                          },
+                        ),
+                      ]),
+                ]),
           ],
         ),
       ],
@@ -154,10 +144,9 @@ enum AppPage {
   registerEmail('registerEmail', 'registerEmail'),
   home('/home', 'home'),
   userProfileEdit('userProfile/edit', 'userProfileEdit'),
+  levels('levels', 'levels'),
   tasks('tasks', 'tasks'),
-  calcStart('calcStart', 'calcStart'),
-  calcs('calcs', 'calcs'),
-  calcReport('calcReport', 'calcReport');
+  calcs('calcs', 'calcs');
 
   final String path;
   final String name;

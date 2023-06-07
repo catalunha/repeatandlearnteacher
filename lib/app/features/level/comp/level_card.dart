@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:repeatandlearn/app/core/models/level_model.dart';
-import 'package:repeatandlearn/app/routes.dart';
-
+import '../../../core/models/level_model.dart';
+import '../../../routes.dart';
 import '../../utils/app_photo_show.dart';
-import '../../home/controller/providers.dart';
+import '../controller/providers.dart';
 
 class LevelCard extends ConsumerWidget {
   final LevelModel model;
