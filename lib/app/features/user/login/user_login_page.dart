@@ -75,6 +75,9 @@ class _UserLoginPageState extends ConsumerState<UserLoginPage>
                           const Text(
                             'Informações para acesso ao Repeat And Learn',
                           ),
+                          const Text(
+                            'Teacher App',
+                          ),
                           const SizedBox(
                             height: 20,
                           ),

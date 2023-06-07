@@ -4,6 +4,7 @@ import '../../data/b4a/table/user_b4a.dart';
 import 'calc_repository.dart';
 import 'level_repository.dart';
 import 'task_repository.dart';
+import 'team_repository.dart';
 import 'user_profile_repository.dart';
 import 'user_repository.dart';
 import 'user_response_repository.dart';
@@ -38,4 +39,9 @@ CalcRepository calcRepository(CalcRepositoryRef ref) {
 @riverpod
 UserResponseRepository userResponseRepository(UserResponseRepositoryRef ref) {
   return UserResponseRepository();
+}
+
+@riverpod
+TeamRepository teamRepository(TeamRepositoryRef ref) {
+  return TeamRepository();
 }

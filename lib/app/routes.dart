@@ -4,12 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import 'core/authentication/riverpod/auth_prov.dart';
 import 'core/authentication/riverpod/auth_state.dart';
-import 'features/calcs/calcs_page.dart';
+import 'core/models/team_model.dart';
 import 'features/error/error_page.dart';
 import 'features/home/home_page.dart';
-import 'features/level/levels_page.dart';
 import 'features/splash/splash_page.dart';
-import 'features/task/tasks_page.dart';
+import 'features/team/save/team_save_page.dart';
 import 'features/user/login/user_login_page.dart';
 import 'features/user/register/email/user_register_email.page.dart';
 import 'features/user_profile/edit/user_profile_edit_page.dart';
@@ -87,34 +86,47 @@ final goRouterProv = Provider<GoRouter>(
               },
             ),
             GoRoute(
-                path: AppPage.levels.path,
-                name: AppPage.levels.name,
-                builder: (context, state) {
-                  return LevelsPage(
-                    key: state.pageKey,
-                  );
-                },
-                routes: [
-                  GoRoute(
-                      path: AppPage.tasks.path,
-                      name: AppPage.tasks.name,
-                      builder: (context, state) {
-                        return TasksPage(
-                          key: state.pageKey,
-                        );
-                      },
-                      routes: [
-                        GoRoute(
-                          path: AppPage.calcs.path,
-                          name: AppPage.calcs.name,
-                          builder: (context, state) {
-                            return CalcsPage(
-                              key: state.pageKey,
-                            );
-                          },
-                        ),
-                      ]),
-                ]),
+              path: AppPage.teamSave.path,
+              name: AppPage.teamSave.name,
+              builder: (context, state) {
+                final teamModel = state.extra as TeamModel?;
+                return TeamSavePage(
+                  key: state.pageKey,
+                  teamModel: teamModel,
+                );
+              },
+            ),
+            // GoRoute(
+            //   path: AppPage.levels.path,
+            //   name: AppPage.levels.name,
+            //   builder: (context, state) {
+            //     return LevelsPage(
+            //       key: state.pageKey,
+            //     );
+            //   },
+            //   routes: [
+            //     GoRoute(
+            //       path: AppPage.tasks.path,
+            //       name: AppPage.tasks.name,
+            //       builder: (context, state) {
+            //         return TasksPage(
+            //           key: state.pageKey,
+            //         );
+            //       },
+            //       routes: [
+            //         GoRoute(
+            //           path: AppPage.calcs.path,
+            //           name: AppPage.calcs.name,
+            //           builder: (context, state) {
+            //             return CalcsPage(
+            //               key: state.pageKey,
+            //             );
+            //           },
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ],
@@ -144,6 +156,7 @@ enum AppPage {
   registerEmail('registerEmail', 'registerEmail'),
   home('/home', 'home'),
   userProfileEdit('userProfile/edit', 'userProfileEdit'),
+  teamSave('team/save', 'teamSave'),
   levels('levels', 'levels'),
   tasks('tasks', 'tasks'),
   calcs('calcs', 'calcs');

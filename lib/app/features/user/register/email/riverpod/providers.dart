@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,10 +10,14 @@ part 'providers.g.dart';
 
 final userRegisterEmailStatusProvider =
     StateProvider.autoDispose<UserRegisterEmailStatus>(
-        (ref) => UserRegisterEmailStatus.initial);
+  (ref) => UserRegisterEmailStatus.initial,
+  name: 'userRegisterEmailStatusProvider',
+);
 
-final userRegisterEmailErrorProvider =
-    StateProvider.autoDispose<String>((ref) => '');
+final userRegisterEmailErrorProvider = StateProvider.autoDispose<String>(
+  (ref) => '',
+  name: 'userRegisterEmailErrorProvider',
+);
 
 @riverpod
 class UserRegisterEmailForm extends _$UserRegisterEmailForm {
