@@ -16,4 +16,6 @@ class UserProfileRepository {
   Future<String> update(UserProfileModel userProfileModel) =>
       userProfileB4a.update(userProfileModel);
   Future<UserProfileModel?> readById(String id) => userProfileB4a.readById(id);
+  Future<String?> getByUserName(String value) =>
+      userProfileB4a.getByUserName(value);
 }

@@ -86,29 +86,29 @@ class UserProfileB4a {
     }
   }
 
-  // Future<UserProfileModel?> readByCPF(String? value) async {
-  //   QueryBuilder<ParseObject> query =
-  //       QueryBuilder<ParseObject>(ParseObject(UserProfileEntity.className));
-  //   query.whereEqualTo(UserProfileEntity.cpf, value);
+  Future<String?> getByUserName(String value) async {
+    QueryBuilder<ParseObject> query =
+        QueryBuilder<ParseObject>(ParseObject(UserProfileEntity.className));
+    query.whereEqualTo(UserProfileEntity.userName, value);
 
-  //   query.first();
-  //   ParseResponse? response;
-  //   try {
-  //     response = await query.query();
+    query.first();
+    ParseResponse? response;
+    try {
+      response = await query.query();
 
-  //     if (response.success && response.results != null) {
-  //       return UserProfileEntity().fromParse(response.results!.first);
-  //     } else {
-  //       // throw Exception();
-  //       return null;
-  //     }
-  //   } on Exception {
-  //     var errorTranslated = ParseErrorTranslate.translate(response!.error!);
-  //     throw B4aException(
-  //       errorTranslated,
-  //       where: 'UserProfileRepositoryB4a.getByRegister',
-  //       originalError: '${response.error!.code} -${response.error!.message}',
-  //     );
-  //   }
-  // }
+      if (response.success && response.results != null) {
+        ParseObject userProfile = response.results!.first as ParseObject;
+        return userProfile.objectId!;
+      } else {
+        return null;
+      }
+    } on Exception {
+      var errorTranslated = ParseErrorTranslate.translate(response!.error!);
+      throw B4aException(
+        errorTranslated,
+        where: 'UserProfileRepositoryB4a.getByRegister',
+        originalError: '${response.error!.code} -${response.error!.message}',
+      );
+    }
+  }
 }

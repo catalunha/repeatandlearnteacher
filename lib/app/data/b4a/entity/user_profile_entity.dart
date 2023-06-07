@@ -6,6 +6,7 @@ class UserProfileEntity {
   static const String className = 'UserProfile';
   // Nome do campo local =  no Database
   static const String id = 'objectId';
+  static const String userName = 'userName';
   static const String email = 'email';
   static const String name = 'name';
   static const String isActive = 'isActive';
@@ -14,6 +15,7 @@ class UserProfileEntity {
     UserProfileModel profileModel = UserProfileModel(
       id: parseObject.objectId!,
       email: parseObject.get(UserProfileEntity.email),
+      userName: parseObject.get(UserProfileEntity.userName),
       name: parseObject.get(UserProfileEntity.name),
       isActive: parseObject.get(UserProfileEntity.isActive),
     );
