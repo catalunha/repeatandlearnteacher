@@ -33,8 +33,8 @@ class UserRegisterEmailForm extends _$UserRegisterEmailForm {
     try {
       final repository = ref.read(userRepositoryProvider);
 
-      UserModel? user =
-          await repository.register(email: email, password: password);
+      UserModel? user = await repository.register(
+          userName: email, email: email, password: password);
       if (user != null) {
         ref.read(userRegisterEmailStatusProvider.notifier).state =
             UserRegisterEmailStatus.success;

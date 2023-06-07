@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "repeatAndLearnTeacher"
+    },
+    "repeatAndLearnTeacher": {
+      "applicationId": "d0yOm5xoV04EmS51yoYfo6FP7gnIyhUpQoaVdL4y"
+    }
+  }
+}

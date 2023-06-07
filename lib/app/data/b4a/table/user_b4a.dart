@@ -13,13 +13,15 @@ import 'user_profile_b4a.dart';
 
 class UserB4a {
   Future<UserModel?> register({
+    required String userName,
     required String email,
     required String password,
   }) async {
     ParseResponse? parseResponse;
 
     try {
-      final user = ParseUser.createUser(email, password, email);
+      final user = ParseUser.createUser(userName, password, email);
+
       parseResponse = await user.signUp();
       if (parseResponse.success && parseResponse.results != null) {
         final UserModel userModel =

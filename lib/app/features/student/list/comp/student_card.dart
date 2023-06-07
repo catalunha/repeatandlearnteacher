@@ -12,7 +12,7 @@ class StudentCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
-      title: Text('${model.name}'),
+      title: Text('${model.userName} - ${model.name}'),
       subtitle: Text(model.email),
       trailing: IconButton(
         icon: const Icon(Icons.delete_forever),
