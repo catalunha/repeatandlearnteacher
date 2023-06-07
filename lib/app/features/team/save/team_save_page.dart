@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../core/models/team_model.dart';
+import '../../utils/app_import_image.dart';
 import '../../utils/app_mixin_loader.dart';
 import '../../utils/app_mixin_messages.dart';
 import '../../utils/app_textformfield.dart';
@@ -69,11 +70,22 @@ class _TeamSaveState extends ConsumerState<TeamSavePage> with Loader, Messages {
                 controller: _nameTEC,
                 validator: Validatorless.required('Name é obrigatório'),
               ),
+              const SizedBox(height: 5),
               AppTextFormField(
                 label: 'Description',
                 controller: _descriptionTEC,
                 validator: Validatorless.required('Description é obrigatório'),
               ),
+              const SizedBox(height: 5),
+              AppImportImage(
+                label: 'Click aqui para buscar para o grupo.',
+                imageUrl: widget.teamModel?.image,
+                setXFile: (value) =>
+                    ref.read(xFileProvider.notifier).state = value,
+                maxHeightImage: 150,
+                maxWidthImage: 100,
+              ),
+              const SizedBox(height: 70),
             ],
           ),
         ),

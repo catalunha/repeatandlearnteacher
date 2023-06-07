@@ -1,13 +1,24 @@
 import 'dart:developer';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:repeatandlearnteacher/app/core/authentication/riverpod/auth_prov.dart';
 import 'package:repeatandlearnteacher/app/core/repositories/repositories_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/models/team_model.dart';
+import '../../../../data/b4a/entity/team_entity.dart';
+import '../../../../data/b4a/utils/xfile_to_parsefile.dart';
 import 'states.dart';
 
 part 'providers.g.dart';
+
+final xFileProvider = StateProvider<XFile?>(
+  (ref) {
+    return null;
+  },
+  name: 'xFileProvider',
+);
 
 @riverpod
 class TeamSave extends _$TeamSave {
@@ -35,7 +46,16 @@ class TeamSave extends _$TeamSave {
         teamTemp = state.team!.copyWith(name: name, description: description);
       }
       final repo = ref.read(teamRepositoryProvider);
-      await repo.save(teamTemp);
+      String teamSavedId = await repo.save(teamTemp);
+      final xFile = ref.read(xFileProvider);
+      if (xFile != null) {
+        await XFileToParseFile.xFileToParseFile(
+          xfile: xFile,
+          className: TeamEntity.className,
+          objectId: teamSavedId,
+          objectAttribute: 'image',
+        );
+      }
       state = state.copyWith(status: TeamSaveStatus.success);
     } catch (e, st) {
       log('$e');
