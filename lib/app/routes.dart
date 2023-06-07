@@ -9,6 +9,7 @@ import 'features/error/error_page.dart';
 import 'features/home/home_page.dart';
 import 'features/splash/splash_page.dart';
 import 'features/team/save/team_save_page.dart';
+import 'features/team/students/team_students_page.dart';
 import 'features/user/login/user_login_page.dart';
 import 'features/user/register/email/user_register_email.page.dart';
 import 'features/user_profile/edit/user_profile_edit_page.dart';
@@ -96,6 +97,15 @@ final goRouterProv = Provider<GoRouter>(
                 );
               },
             ),
+            GoRoute(
+              path: AppPage.teamStudents.path,
+              name: AppPage.teamStudents.name,
+              builder: (context, state) {
+                return TeamStudentsPage(
+                  key: state.pageKey,
+                );
+              },
+            ),
             // GoRoute(
             //   path: AppPage.levels.path,
             //   name: AppPage.levels.name,
@@ -157,6 +167,7 @@ enum AppPage {
   home('/home', 'home'),
   userProfileEdit('userProfile/edit', 'userProfileEdit'),
   teamSave('team/save', 'teamSave'),
+  teamStudents('team/students', 'teamStudents'),
   levels('levels', 'levels'),
   tasks('tasks', 'tasks'),
   calcs('calcs', 'calcs');

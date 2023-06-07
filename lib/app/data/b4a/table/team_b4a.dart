@@ -40,6 +40,33 @@ class TeamB4a {
     }
   }
 
+  Future<TeamModel> getById(String teamId) async {
+    final parseObject = ParseObject(TeamEntity.className);
+
+    ParseResponse? parseResponse;
+    try {
+      parseResponse =
+          await parseObject.getObject(teamId, include: ['userProfile']);
+
+      if (parseResponse.success && parseResponse.results != null) {
+        ParseObject parseObjectItem =
+            parseResponse.results!.first as ParseObject;
+        return TeamEntity().toModel(parseObjectItem);
+      } else {
+        throw Exception();
+      }
+    } on Exception {
+      var errorTranslated =
+          ParseErrorTranslate.translate(parseResponse!.error!);
+      throw B4aException(
+        errorTranslated,
+        where: 'TeamRepositoryB4a.getById',
+        originalError:
+            '${parseResponse.error!.code} -${parseResponse.error!.message}',
+      );
+    }
+  }
+
   Future<String> save(TeamModel model) async {
     final parseObject = await TeamEntity().toParse(model);
     ParseResponse? parseResponse;

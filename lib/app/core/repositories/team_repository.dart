@@ -13,6 +13,7 @@ class TeamRepository {
   }) =>
       teamB4a.list(query: query, pagination: pagination);
   Future<String> save(TeamModel model) => teamB4a.save(model);
+  Future<TeamModel> getById(String teamId) => teamB4a.getById(teamId);
   Future<bool> delete(String modelId) => teamB4a.delete(modelId);
   Future<void> updateRelationStudents(
           {required String objectId,

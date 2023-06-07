@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/models/team_model.dart';
 import '../../../../routes.dart';
+import '../../../student/list/controller/providers.dart';
 import '../../../utils/app_photo_show.dart';
 
 class TeamCard extends ConsumerWidget {
@@ -29,6 +30,14 @@ class TeamCard extends ConsumerWidget {
             onTap: () {
               context.goNamed(AppPage.teamSave.name, extra: model);
             },
+            trailing: IconButton(
+              icon: const Icon(Icons.person_add),
+              onPressed: () {
+                ref.read(teamSelectedProvider.notifier).state = model;
+
+                context.goNamed(AppPage.teamStudents.name);
+              },
+            ),
           ),
         ],
       ),
