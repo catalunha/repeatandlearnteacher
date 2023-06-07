@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:repeatandlearn/app/features/task/controller/providers.dart';
 
-import '../home/controller/providers.dart';
+import '../level/controller/providers.dart';
 import 'comp/task_card.dart';
+import 'controller/providers.dart';
 
 class TasksPage extends ConsumerWidget {
   const TasksPage({
@@ -14,7 +14,6 @@ class TasksPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final levelSelected = ref.watch(levelSelectedProvider)!;
     final taskList = ref.watch(taskListProvider);
-    final userResponses = ref.watch(userResponseListProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -23,35 +22,12 @@ class TasksPage extends ConsumerWidget {
       ),
       body: taskList.when(
         data: (dataTasks) {
-          return userResponses.when(
-            data: (dataUserResp) {
-              return ListView.builder(
-                itemCount: dataTasks.length,
-                itemBuilder: (context, index) {
-                  final task = dataTasks[index];
-                  final indexUserResp = dataUserResp
-                      .indexWhere((userResp) => userResp.task.id == task.id);
-                  return TaskCard(
-                    model: task,
-                    userResponseModel:
-                        indexUserResp >= 0 ? dataUserResp[indexUserResp] : null,
-                  );
-                },
-              );
-            },
-            error: (error, stackTrace) {
-              //log('Erro em TasksPage build');
-              //log('$error');
-              //log('$stackTrace');
-              return const Center(
-                child: Text('Erro em buscar userResponse'),
-              );
-            },
-            loading: () {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.yellow,
-                ),
+          return ListView.builder(
+            itemCount: dataTasks.length,
+            itemBuilder: (context, index) {
+              final task = dataTasks[index];
+              return TaskCard(
+                model: task,
               );
             },
           );
