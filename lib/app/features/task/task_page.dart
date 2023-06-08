@@ -5,8 +5,8 @@ import '../level/controller/providers.dart';
 import 'comp/task_card.dart';
 import 'controller/providers.dart';
 
-class TasksPage extends ConsumerWidget {
-  const TasksPage({
+class TaskPage extends ConsumerWidget {
+  const TaskPage({
     super.key,
   });
 

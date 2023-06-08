@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'comp/level_card.dart';
 import 'controller/providers.dart';
 
-class LevelsPage extends ConsumerWidget {
-  const LevelsPage({
+class LevelPage extends ConsumerWidget {
+  const LevelPage({
     super.key,
   });
 

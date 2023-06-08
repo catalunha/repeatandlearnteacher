@@ -39,6 +39,11 @@ class TeamCard extends ConsumerWidget {
               },
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                context.goNamed(AppPage.level.name, extra: model);
+              },
+              child: const Text('View Calcs')),
         ],
       ),
     );

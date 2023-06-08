@@ -52,14 +52,21 @@ class _TeamStudentsPageState extends ConsumerState<TeamStudentsPage>
         children: [
           Wrap(
             children: [
-              ElevatedButton(
-                  onPressed: () => _addDialog(context),
-                  child: const Text('Add')),
-              ElevatedButton(
-                  onPressed: () => _createDialog(context),
-                  child: const Text('Create')),
-              ElevatedButton(
-                  onPressed: () async {}, child: const Text('View Calcs')),
+              SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                    onPressed: () => _addDialog(context),
+                    child: const Text('Add')),
+              ),
+              const SizedBox(width: 20),
+              SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                    onPressed: () => _createDialog(context),
+                    child: const Text('Create')),
+              ),
+              // ElevatedButton(
+              //     onPressed: () async {}, child: const Text('View Calcs')),
             ],
           ),
           const StudentList()

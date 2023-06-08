@@ -26,7 +26,7 @@ class LevelCard extends ConsumerWidget {
         subtitle: Text(model.description),
         onTap: () {
           ref.read(levelSelectedProvider.notifier).setLevel(model);
-          context.goNamed(AppPage.tasks.name);
+          context.goNamed(AppPage.task.name);
         },
       ),
     );

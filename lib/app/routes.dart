@@ -7,7 +7,9 @@ import 'core/authentication/riverpod/auth_state.dart';
 import 'core/models/team_model.dart';
 import 'features/error/error_page.dart';
 import 'features/home/home_page.dart';
+import 'features/level/level_page.dart';
 import 'features/splash/splash_page.dart';
+import 'features/task/task_page.dart';
 import 'features/team/save/team_save_page.dart';
 import 'features/team/students/team_students_page.dart';
 import 'features/user/login/user_login_page.dart';
@@ -106,37 +108,37 @@ final goRouterProv = Provider<GoRouter>(
                 );
               },
             ),
-            // GoRoute(
-            //   path: AppPage.levels.path,
-            //   name: AppPage.levels.name,
-            //   builder: (context, state) {
-            //     return LevelsPage(
-            //       key: state.pageKey,
-            //     );
-            //   },
-            //   routes: [
-            //     GoRoute(
-            //       path: AppPage.tasks.path,
-            //       name: AppPage.tasks.name,
-            //       builder: (context, state) {
-            //         return TasksPage(
-            //           key: state.pageKey,
-            //         );
-            //       },
-            //       routes: [
-            //         GoRoute(
-            //           path: AppPage.calcs.path,
-            //           name: AppPage.calcs.name,
-            //           builder: (context, state) {
-            //             return CalcsPage(
-            //               key: state.pageKey,
-            //             );
-            //           },
-            //         ),
-            //       ],
-            //     ),
-            //   ],
-            // ),
+            GoRoute(
+              path: AppPage.level.path,
+              name: AppPage.level.name,
+              builder: (context, state) {
+                return LevelPage(
+                  key: state.pageKey,
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: AppPage.task.path,
+                  name: AppPage.task.name,
+                  builder: (context, state) {
+                    return TaskPage(
+                      key: state.pageKey,
+                    );
+                  },
+                  // routes: [
+                  //   GoRoute(
+                  //     path: AppPage.calcs.path,
+                  //     name: AppPage.calcs.name,
+                  //     builder: (context, state) {
+                  //       return CalcsPage(
+                  //         key: state.pageKey,
+                  //       );
+                  //     },
+                  //   ),
+                  // ],
+                ),
+              ],
+            ),
           ],
         ),
       ],
@@ -168,9 +170,9 @@ enum AppPage {
   userProfileEdit('userProfile/edit', 'userProfileEdit'),
   teamSave('team/save', 'teamSave'),
   teamStudents('team/students', 'teamStudents'),
-  levels('levels', 'levels'),
-  tasks('tasks', 'tasks'),
-  calcs('calcs', 'calcs');
+  level('level', 'level'),
+  task('task', 'task');
+  // calcs('calcs', 'calcs');
 
   final String path;
   final String name;
