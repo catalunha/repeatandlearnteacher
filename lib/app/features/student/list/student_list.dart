@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:repeatandlearnteacher/app/features/student/list/controller/providers.dart';
@@ -34,9 +36,9 @@ class StudentList extends ConsumerWidget {
         */
       },
       error: (error, stackTrace) {
-        //log('Erro em TasksPage build');
-        //log('$error');
-        //log('$stackTrace');
+        log('Erro em buscar students');
+        log('$error');
+        log('$stackTrace');
         return const Center(
           child: Text('Erro em buscar students'),
         );

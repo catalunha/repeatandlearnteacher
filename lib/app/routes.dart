@@ -9,6 +9,7 @@ import 'features/error/error_page.dart';
 import 'features/home/home_page.dart';
 import 'features/level/level_page.dart';
 import 'features/splash/splash_page.dart';
+import 'features/student/response/student_response_page.dart';
 import 'features/task/task_page.dart';
 import 'features/team/save/team_save_page.dart';
 import 'features/team/students/team_students_page.dart';
@@ -125,17 +126,17 @@ final goRouterProv = Provider<GoRouter>(
                       key: state.pageKey,
                     );
                   },
-                  // routes: [
-                  //   GoRoute(
-                  //     path: AppPage.calcs.path,
-                  //     name: AppPage.calcs.name,
-                  //     builder: (context, state) {
-                  //       return CalcsPage(
-                  //         key: state.pageKey,
-                  //       );
-                  //     },
-                  //   ),
-                  // ],
+                  routes: [
+                    GoRoute(
+                      path: AppPage.studentResponse.path,
+                      name: AppPage.studentResponse.name,
+                      builder: (context, state) {
+                        return StudentResponsePage(
+                          key: state.pageKey,
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -156,10 +157,11 @@ final goRouterProv = Provider<GoRouter>(
 /login/registerEmail
 /home (com levels)
 /home/userProfile/edit
-/home/tasks
-/home/tasks/calcStart
-/home/tasks/calcStart/calcs[1...100]
-/home/tasks/calcStart/calcs/calcReport
+/home/teamSave
+/home/teamStudents
+/home/level
+/home/level/task
+/home/level/task/studentResponse
 */
 
 enum AppPage {
@@ -171,7 +173,8 @@ enum AppPage {
   teamSave('team/save', 'teamSave'),
   teamStudents('team/students', 'teamStudents'),
   level('level', 'level'),
-  task('task', 'task');
+  task('task', 'task'),
+  studentResponse('studentResponse', 'studentResponse');
   // calcs('calcs', 'calcs');
 
   final String path;
