@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$teamWithStudentsHash() => r'335c96859c2d99e692d91741beb8bf988e3153d6';
+String _$teamWithStudentsHash() => r'3ba1c99a305c549392a94c7dd98bbccfeda4d9d7';
 
 /// See also [teamWithStudents].
 @ProviderFor(teamWithStudents)
@@ -21,20 +21,21 @@ final teamWithStudentsProvider = AutoDisposeFutureProvider<TeamModel>.internal(
 );
 
 typedef TeamWithStudentsRef = AutoDisposeFutureProviderRef<TeamModel>;
-String _$teamWithStudents2Hash() => r'e184f948c655965ec7f9e44e08a91cd9ca07878e';
+String _$teamWithStudents2aHash() =>
+    r'c671b73196b5cb523c3dda21ff8faf1f97fcb36f';
 
-/// See also [TeamWithStudents2].
-@ProviderFor(TeamWithStudents2)
-final teamWithStudents2Provider =
-    AutoDisposeNotifierProvider<TeamWithStudents2, bool>.internal(
-  TeamWithStudents2.new,
-  name: r'teamWithStudents2Provider',
+/// See also [TeamWithStudents2a].
+@ProviderFor(TeamWithStudents2a)
+final teamWithStudents2aProvider = AutoDisposeNotifierProvider<
+    TeamWithStudents2a, TeamViewTaskStatus>.internal(
+  TeamWithStudents2a.new,
+  name: r'teamWithStudents2aProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$teamWithStudents2Hash,
+      : _$teamWithStudents2aHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$TeamWithStudents2 = AutoDisposeNotifier<bool>;
+typedef _$TeamWithStudents2a = AutoDisposeNotifier<TeamViewTaskStatus>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

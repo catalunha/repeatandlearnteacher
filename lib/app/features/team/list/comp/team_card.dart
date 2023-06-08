@@ -21,7 +21,7 @@ class TeamCard extends ConsumerWidget with Loader, Messages {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<TeamViewTaskStatus>(
-      teamViewTaskStatusProvider,
+      teamWithStudents2aProvider,
       (previous, next) {
         if (next == TeamViewTaskStatus.error) {
           hideLoader(context);
@@ -61,17 +61,7 @@ class TeamCard extends ConsumerWidget with Loader, Messages {
           ElevatedButton(
               onPressed: () async {
                 ref.read(teamSelectedProvider.notifier).state = model;
-                ref.read(teamWithStudents2Provider.notifier).updateStudents();
-                // teamWithStudents.when(
-                //   data: (data) {
-                //     hideLoader(context);
-                //     context.goNamed(AppPage.level.name, extra: model);
-                //   },
-                //   error: (error, stackTrace) {},
-                //   loading: () {
-                //     showLoader(context);
-                //   },
-                // );
+                ref.read(teamWithStudents2aProvider.notifier).updateStudents();
               },
               child: const Text('View Tasks')),
         ],

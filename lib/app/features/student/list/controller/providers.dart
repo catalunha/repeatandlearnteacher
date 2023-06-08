@@ -29,49 +29,84 @@ final teamViewTaskErrorProvider = StateProvider<String>(
 
 @riverpod
 FutureOr<TeamModel> teamWithStudents(TeamWithStudentsRef ref) async {
-  try {
-    ref.read(teamViewTaskStatusProvider.notifier).state =
-        TeamViewTaskStatus.loading;
-    final teamSelected = ref.read(teamSelectedProvider)!;
-    final teamNew =
-        await ref.read(teamRepositoryProvider).getById(teamSelected.id!);
-    ref.read(teamSelectedProvider.notifier).state = teamNew;
-    ref.read(teamViewTaskStatusProvider.notifier).state =
-        TeamViewTaskStatus.success;
-    return ref.read(teamSelectedProvider)!;
-  } catch (e, st) {
-    print(e);
-    print(st);
-    ref.read(teamViewTaskStatusProvider.notifier).state =
-        TeamViewTaskStatus.error;
-    throw Exception();
-  }
+  final teamSelected = ref.read(teamSelectedProvider)!;
+  // return await ref.read(teamRepositoryProvider).getById(teamSelected.id!);
+  final teamNew =
+      await ref.read(teamRepositoryProvider).getById(teamSelected.id!);
+  ref.read(teamSelectedProvider.notifier).state = teamNew;
+  return teamNew;
 }
 
+// @riverpod
+// class TeamWithStudents3 extends _$TeamWithStudents3 {
+//   @override
+//   FutureOr<TeamModel?> build() {
+//     return null;
+//     // return Future.value([team]);
+//   }
+
+//   Future<void> get(TeamModel team) async {
+//     state = AsyncData(team);
+//   }
+
+//   FutureOr<void> getWithStudents() async {
+//     state = const AsyncLoading();
+
+//     state = await AsyncValue.guard(() async {
+//       return await ref
+//           .read(teamRepositoryProvider)
+//           .getById(state.requireValue!.id!);
+//     });
+//   }
+// }
+
+// @riverpod
+// class TeamWithStudents2 extends _$TeamWithStudents2 {
+//   @override
+//   bool build() {
+//     return true;
+//   }
+
+//   Future<void> updateStudents() async {
+//     try {
+//       ref.read(teamViewTaskStatusProvider.notifier).state =
+//           TeamViewTaskStatus.loading;
+//       final teamSelected = ref.read(teamSelectedProvider)!;
+//       final teamNew =
+//           await ref.read(teamRepositoryProvider).getById(teamSelected.id!);
+//       ref.read(teamSelectedProvider.notifier).state = teamNew;
+//       ref.read(teamViewTaskStatusProvider.notifier).state =
+//           TeamViewTaskStatus.success;
+//       // return ref.read(teamSelectedProvider)!;
+//     } catch (e, st) {
+//       print(e);
+//       print(st);
+//       ref.read(teamViewTaskStatusProvider.notifier).state =
+//           TeamViewTaskStatus.error;
+//       throw Exception();
+//     }
+//   }
+// }
+
 @riverpod
-class TeamWithStudents2 extends _$TeamWithStudents2 {
+class TeamWithStudents2a extends _$TeamWithStudents2a {
   @override
-  bool build() {
-    return true;
+  TeamViewTaskStatus build() {
+    return TeamViewTaskStatus.initial;
   }
 
   Future<void> updateStudents() async {
     try {
-      ref.read(teamViewTaskStatusProvider.notifier).state =
-          TeamViewTaskStatus.loading;
+      state = TeamViewTaskStatus.loading;
       final teamSelected = ref.read(teamSelectedProvider)!;
       final teamNew =
           await ref.read(teamRepositoryProvider).getById(teamSelected.id!);
       ref.read(teamSelectedProvider.notifier).state = teamNew;
-      ref.read(teamViewTaskStatusProvider.notifier).state =
-          TeamViewTaskStatus.success;
-      return ref.read(teamSelectedProvider)!;
+      state = TeamViewTaskStatus.success;
     } catch (e, st) {
       print(e);
       print(st);
-      ref.read(teamViewTaskStatusProvider.notifier).state =
-          TeamViewTaskStatus.error;
-      throw Exception();
+      state = TeamViewTaskStatus.error;
     }
   }
 }

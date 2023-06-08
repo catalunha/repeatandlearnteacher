@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:repeatandlearnteacher/app/features/student/response/controller/providers.dart';
 
 import '../../level/controller/providers.dart';
 import '../../task/controller/providers.dart';
 import '../list/controller/providers.dart';
-import 'comp/student_response_card.dart';
 
 class StudentResponsePage extends ConsumerWidget {
   const StudentResponsePage({super.key});
@@ -16,10 +16,11 @@ class StudentResponsePage extends ConsumerWidget {
     final level = ref.read(levelSelectedProvider);
     final task = ref.read(taskSelectedProvider);
     final responses = ref.watch(studentsResponseProvider);
+    final dateFormat = DateFormat('dd/MM/y HH:mm');
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Response'),
+        title: const Text('Students responses'),
       ),
       // body: Column(
       //   children: [
@@ -48,15 +49,55 @@ class StudentResponsePage extends ConsumerWidget {
       // ),
       body: responses.when(
         data: (data) {
-          return ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final task = data[index];
-              return StudentResponseCard(
-                model: task,
-              );
-            },
+          return Column(
+            children: [
+              Text('Team: ${team!.name}'),
+              Text('Level: ${level!.title}'),
+              Text('Task: ${task!.title}'),
+              Flexible(
+                child: Table(
+                  border: TableBorder.all(),
+                  columnWidths: const {
+                    0: IntrinsicColumnWidth(),
+                    1: IntrinsicColumnWidth(),
+                    2: IntrinsicColumnWidth(),
+                    3: IntrinsicColumnWidth(),
+                  },
+                  children: [
+                    const TableRow(
+                      children: [
+                        Text('Student'),
+                        Text('StartIn'),
+                        Text('Minutes'),
+                        Text('Rating'),
+                      ],
+                    ),
+                    for (var item in data)
+                      TableRow(
+                        children: [
+                          Text(item.userProfile.userName,
+                              textAlign: TextAlign.center),
+                          Text(dateFormat.format(item.startIn),
+                              textAlign: TextAlign.center),
+                          Text('${item.minutes}', textAlign: TextAlign.center),
+                          Text(item.rating, textAlign: TextAlign.center),
+                        ],
+                      )
+                  ],
+                ),
+              ),
+            ],
           );
+
+          // return ListView.builder(
+          //   itemCount: data.length,
+          //   itemBuilder: (context, index) {
+          //     final task = data[index];
+          //     return StudentResponseCard(
+          //       model: task,
+          //     );
+          //   },
+          // );
         },
         error: (error, stackTrace) {
           //log('Erro em TasksPage build');
